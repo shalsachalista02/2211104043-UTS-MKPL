@@ -1,3 +1,5 @@
+package lib;
+
 public class EmployeeData {
 	public String employeeId;
     public PersonalIdentity identity;
