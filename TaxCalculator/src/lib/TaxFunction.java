@@ -32,12 +32,10 @@ public class TaxFunction {
 		if (numberOfChildren > 3) {
 			numberOfChildren = 3;
 		}
+
+		int nonTaxable = getNonTaxableIncome(isMarried, numberOfChildren);
 		
-		if (isMarried) {
-			tax = (int) Math.round(0.05 * (((monthlySalary + otherMonthlyIncome) * numberOfMonthWorking) - deductible - (54000000 + 4500000 + (numberOfChildren * 1500000))));
-		}else {
-			tax = (int) Math.round(0.05 * (((monthlySalary + otherMonthlyIncome) * numberOfMonthWorking) - deductible - 54000000));
-		}
+		tax = (int) Math.round(0.05 * (((monthlySalary + otherMonthlyIncome) * numberOfMonthWorking) - deductible - nonTaxable));
 		
 		if (tax < 0) {
 			return 0;
@@ -45,6 +43,14 @@ public class TaxFunction {
 			return tax;
 		}
 			 
+	}
+
+	private static int getNonTaxableIncome(boolean isMarried, int numberOfChildren) {
+		int nonTaxable = PTKP_SINGLE;
+		if (isMarried) {
+			nonTaxable += PTKP_MARRIED + (Math.min(numberOfChildren, 3) * PTKP_CHILD);
+		}
+		return nonTaxable;
 	}
 	
 }
