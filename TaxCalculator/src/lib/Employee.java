@@ -8,10 +8,7 @@ import java.util.List;
 public class Employee {
 
 	private String employeeId;
-	private String firstName;
-	private String lastName;
-	private String idNumber;
-	private String address;
+	private PersonalIdentity identity;
 	
 	private int yearJoined;
 	private int monthJoined;
@@ -33,10 +30,7 @@ public class Employee {
 	
 	public Employee(EmployeeData data) {
 		this.employeeId = data.employeeId;
-		this.firstName = data.firstName;
-		this.lastName = data.lastName;
-		this.idNumber = data.idNumber;
-		this.address = data.address;
+		this.identity = data.identity;
 		this.yearJoined = data.yearJoined;
 		this.monthJoined = data.monthJoined;
 		this.dayJoined = data.dayJoined;
@@ -77,7 +71,7 @@ public class Employee {
 	
 	public void setSpouse(String spouseName, String spouseIdNumber) {
 		this.spouseName = spouseName;
-		this.spouseIdNumber = idNumber;
+		this.spouseIdNumber = this.identity.idNumber;
 	}
 	
 	public void addChild(String childName, String childIdNumber) {
